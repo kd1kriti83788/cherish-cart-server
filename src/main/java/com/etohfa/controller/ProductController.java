@@ -32,14 +32,13 @@ public class ProductController {
 
 	@PostMapping("add")
 	@Operation(summary = "Api to add product")
-	public ResponseEntity<CommonApiResponse> addProduct(@RequestBody ProductAddRequest productDto) {
+	public ResponseEntity<CommonApiResponse> addProduct(ProductAddRequest productDto) {
 		return this.productResource.addProduct(productDto);
 	}
 
 	@PutMapping("update/detail")
 	@Operation(summary = "Api to update product details excluding image")
 	public ResponseEntity<CommonApiResponse> updateProductDetails(@RequestBody ProductDetailUpdateRequest request) {
-		System.out.println(request);
 		return this.productResource.updateProductDetail(request);
 	}
 
