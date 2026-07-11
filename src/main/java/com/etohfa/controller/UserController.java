@@ -32,7 +32,7 @@ public class UserController {
 	private UserResource userResource;
 
 	// RegisterUserRequestDto, we will set only email, password & role from UI
-	@PostMapping("/admin/register")
+	@PostMapping("/admin/add")
 	@Operation(summary = "Api to register Admin")
 	public ResponseEntity<CommonApiResponse> registerAdmin(@RequestBody RegisterUserRequestDto request) {
 		return userResource.registerAdmin(request);
@@ -70,13 +70,13 @@ public class UserController {
 	}
 	
 	@DeleteMapping("delete/seller")
-	@Operation(summary =  "Api to update the user status")
+	@Operation(summary =  "Api to update the status of seller")
 	public ResponseEntity<CommonApiResponse> deleteSeller(@RequestParam("sellerId") int sellerId) {
 		return userResource.deleteSeller(sellerId);
 	}
 	
 	@DeleteMapping("delete/seller/delivery-person")
-	@Operation(summary =  "Api to update the user status")
+	@Operation(summary =  "Api to update the staus of delivery-person")
 	public ResponseEntity<CommonApiResponse> deleteDeliveryPerson(@RequestParam("deliveryId") int deliveryId) {
 		return userResource.deleteDeliveryPerson(deliveryId);
 	}
