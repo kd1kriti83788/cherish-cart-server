@@ -44,7 +44,7 @@ public class SecurityConfig {
 						auth -> auth.requestMatchers("/api/user/login", "/api/user/register").permitAll()
 						
 						// this APIs are only accessible by ADMIN
-						.requestMatchers("/api/user/admin/register","/api/user/delete/seller", "/api/order/fetch/all",
+						.requestMatchers("/api/user/admin/add","/api/user/delete/seller", "/api/order/getAll",
 								"/api/category/update", "/api/category/add", "/api/category/delete")
 						.hasAuthority(UserRole.ROLE_ADMIN.value())
 						
