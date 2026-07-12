@@ -35,7 +35,12 @@ public interface OrdersDao extends JpaRepository<Orders, Integer> {
 	@Query("SELECT o FROM Orders o WHERE status In (:status) AND o.deliveryPerson = :deliveryPerson")
 	List<Orders> findByStatusAndDeliveryPerson(@Param("status") List<String> status, @Param("deliveryPerson") User deliveryPerson);
 
-	@Query("SELECT o FROM Orders o WHERE o.user.id = :userId AND o.product.id = :productId AND status In (:status)")
-	List<Orders> findByUserIdAndProductIdAndStatusIn(@Param("userId") int userId,
-			@Param("productId") int productId, @Param("status") List<String> status);
+	// @Query("SELECT o FROM Orders o WHERE o.user.id = :userId AND o.product.id = :productId AND status In (:status)")
+	// List<Orders> findByUserIdAndProductIdAndStatusIn(@Param("userId") int userId,
+	// 		@Param("productId") int productId, @Param("status") List<String> status);
+
+	List<Orders> findByUserIdAndProductIdAndStatusIn(
+        int userId,
+        int productId,
+        List<String> status);
 }
