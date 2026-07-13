@@ -42,8 +42,6 @@ public class Orders {
 
 	private String deliveryDate;
 
-	private String deliveryStatus; // Delivered, Pending // this will be for actual delivery status
-
 	public int getId() {
 		return id;
 	}
@@ -123,13 +121,4 @@ public class Orders {
 	public void setDeliveryDate(String deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
-
-	public String getDeliveryStatus() {
-		return deliveryStatus;
-	}
-
-	public void setDeliveryStatus(String deliveryStatus) {
-		this.deliveryStatus = deliveryStatus;
-	}
-
 }

@@ -129,7 +129,6 @@ public class OrderResource {
 		        order.setQuantity(cart.getQuantity());
 		        order.setProduct(cart.getProduct());
 		        order.setStatus(DeliveryStatus.PENDING.value());
-		        order.setDeliveryStatus(DeliveryStatus.PENDING.value());
 
 		        orders.add(order);
 		        
@@ -333,7 +332,6 @@ public class OrderResource {
 
 		for (Orders order : orders) {
 			order.setDeliveryPerson(deliveryPerson);
-			order.setDeliveryStatus(DeliveryStatus.PENDING.value());
 		}
 
 		List<Orders> updatedOrders = this.orderService.updateOrders(orders);
@@ -355,7 +353,7 @@ public class OrderResource {
 
 		OrderResponseDto response = new OrderResponseDto();
 
-		if (request == null || request.getOrderId() == null || request.getDeliveryStatus() == null
+		if (request == null || request.getOrderId() == null || request.getStatus() == null
 				|| request.getDeliveryTime() == null || request.getDeliveryId() == 0) {
 			response.setResponseMessage("missing input");
 			response.setSuccess(false);
@@ -385,12 +383,12 @@ public class OrderResource {
 		}
 
 		for (Orders order : orders) {
-			order.setStatus(request.getDeliveryStatus());
+			order.setStatus(request.getStatus());
 			order.setDeliveryDate(request.getDeliveryDate());
 			order.setDeliveryTime(request.getDeliveryTime());
 
-			if (request.getDeliveryStatus().equals(DeliveryStatus.DELIVERED.value())) {
-				order.setDeliveryStatus(DeliveryStatus.DELIVERED.value());
+			if (request.getStatus().equals(DeliveryStatus.DELIVERED.value())) {
+				order.setStatus(DeliveryStatus.DELIVERED.value());
 			}
 		}
 

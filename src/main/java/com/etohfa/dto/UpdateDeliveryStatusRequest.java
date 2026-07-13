@@ -4,7 +4,7 @@ public class UpdateDeliveryStatusRequest {
 
 	private String orderId;
 
-	private String deliveryStatus;
+	private String status;
 
 	private String deliveryTime;
 
@@ -20,12 +20,12 @@ public class UpdateDeliveryStatusRequest {
 		this.orderId = orderId;
 	}
 
-	public String getDeliveryStatus() {
-		return deliveryStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setDeliveryStatus(String deliveryStatus) {
-		this.deliveryStatus = deliveryStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getDeliveryTime() {
