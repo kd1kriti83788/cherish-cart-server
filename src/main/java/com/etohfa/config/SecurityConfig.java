@@ -53,13 +53,15 @@ public class SecurityConfig {
 						.hasAuthority(UserRole.ROLE_ADMIN.value())
 						
 						// this APIs are only accessible by SELLER
-						.requestMatchers("/api/user/fetch/seller/delivery-person", "/api/user/delete/seller/delivery-person", "/api/products/update/image",
-								"/api/products/update/detail", "/api/products/delete",
-								"/api/order/assign", "/api/order/fetch/seller-wise",
-								"/api/products/review/seller")
+						.requestMatchers("/api/user/fetch/seller/delivery-person", "/api/user/delete/seller/delivery-person",
+								"/api/products/delete", "/api/sellers/*/orders",
+								"/api/order/assign","/api/products/review/seller", "/api/sellers/*/reviews")
 						.hasAuthority(UserRole.ROLE_SELLER.value())
 
 						.requestMatchers(HttpMethod.POST, "/api/products")
+						.hasAuthority(UserRole.ROLE_SELLER.value())
+
+						.requestMatchers(HttpMethod.PUT, "/api/products/**")
 						.hasAuthority(UserRole.ROLE_SELLER.value())
 						
 						// this APIs are only accessible by Delivery Person

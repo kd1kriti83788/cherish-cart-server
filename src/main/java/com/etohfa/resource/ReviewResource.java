@@ -168,7 +168,7 @@ public class ReviewResource {
 		return averageRating;
 	}
 
-	public ResponseEntity<ProductReviewResponseDto> fetchSellerProductReviews(int sellerId) {
+	public ResponseEntity<ProductReviewResponseDto> getReviewsBySellerId(int sellerId) {
 
 		LOG.info("request received for fetching the seller product reviews");
 

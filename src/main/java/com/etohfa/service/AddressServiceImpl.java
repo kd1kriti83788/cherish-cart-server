@@ -1,6 +1,5 @@
 package com.etohfa.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.etohfa.dao.AddressDao;
 import com.etohfa.entity.Address;
-import com.etohfa.entity.User;
 
 @Service
 public class AddressServiceImpl implements AddressService {

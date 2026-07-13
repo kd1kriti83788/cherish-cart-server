@@ -36,19 +36,20 @@ public class ProductController {
 		return this.productResource.addProduct(productDto);
 	}
 
-	@PutMapping("update/detail")
+	@PutMapping("/{productId}")
 	@Operation(summary = "Api to update product details excluding image")
-	public ResponseEntity<CommonApiResponse> updateProductDetails(@RequestBody ProductDetailUpdateRequest request) {
-		return this.productResource.updateProductDetail(request);
+	public ResponseEntity<CommonApiResponse> updateProductDetails(
+		@RequestBody ProductDetailUpdateRequest request, @PathVariable("productId") int productId) {
+		return this.productResource.updateProductDetail(request, productId);
 	}
 
-	@PutMapping("update/image")
+	@PutMapping("/image")
 	@Operation(summary = "Api to update product images")
-	public ResponseEntity<CommonApiResponse> updateProductDetails(ProductAddRequest request) {
+	public ResponseEntity<CommonApiResponse> updateProductImage(ProductAddRequest request) {
 		return this.productResource.updateProductImage(request);
 	}
 
-	@DeleteMapping("delete")
+	@DeleteMapping("/delete")
 	@Operation(summary = "Api to delete product")
 	public ResponseEntity<CommonApiResponse> deleteProduct(@RequestParam("productId") int productId,
 			@RequestParam("sellerId") int sellerId) {
@@ -67,25 +68,11 @@ public class ProductController {
 		return this.productResource.fetchAllProducts();
 	}
 
-	@GetMapping("fetch/seller-wise/category-wise")
-	@Operation(summary = "Api to fetch all seller active product")
-	public ResponseEntity<ProductResponseDto> fetchAllSellerProductAndCategory(
-			@RequestParam(name = "sellerId") int sellerId, @RequestParam(name = "categoryId") int categoryId) {
-		return this.productResource.fetchAllSellerProductsWithCategory(sellerId, categoryId);
-	}
-
 	@GetMapping("search/{productName}")
 	@Operation(summary = "Api to search the products by name")
 	public ResponseEntity<ProductResponseDto> searchProductsByName(
 			@PathVariable(name = "productName") String productName) {
 		return this.productResource.searchProductByName(productName);
-	}
-
-	@GetMapping("search/seller-wise")
-	@Operation(summary = "Api to search the seller products by name")
-	public ResponseEntity<ProductResponseDto> searchSellerProductsByName(
-			@RequestParam(name = "productName") String productName, @RequestParam(name = "sellerId") int sellerId) {
-		return this.productResource.searchSellerProductsByName(productName, sellerId);
 	}
 
 	@GetMapping(value = "/{productImageName}", produces = "image/*")

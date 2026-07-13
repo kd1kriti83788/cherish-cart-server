@@ -115,20 +115,20 @@ public class ProductResource {
 
 	}
 
-	public ResponseEntity<CommonApiResponse> updateProductDetail(ProductDetailUpdateRequest request) {
+	public ResponseEntity<CommonApiResponse> updateProductDetail(ProductDetailUpdateRequest request, int productId) {
 
 		LOG.info("request received for update product");
 
 		CommonApiResponse response = new CommonApiResponse();
 
-		if (request == null) {
+		if (request == null || productId == 0) {
 			response.setResponseMessage("missing input");
 			response.setSuccess(false);
 
 			return new ResponseEntity<CommonApiResponse>(response, HttpStatus.BAD_REQUEST);
 		}
 
-		Product product = this.productService.getProductById(request.getId());
+		Product product = this.productService.getProductById(productId);
 
 		if (product == null) {
 			response.setResponseMessage("product not found");
@@ -154,7 +154,7 @@ public class ProductResource {
 			throw new ProductSaveFailedException("Failed to update the Product details");
 		}
 
-		response.setResponseMessage("Product added successful");
+		response.setResponseMessage("Product updated successful");
 		response.setSuccess(true);
 
 		return new ResponseEntity<CommonApiResponse>(response, HttpStatus.OK);
@@ -483,7 +483,7 @@ public class ProductResource {
 		}
 	}
 
-	public ResponseEntity<ProductResponseDto> fetchAllSellerProductsWithCategory(int sellerId, int categoryId) {
+	public ResponseEntity<ProductResponseDto> getProductsBySellerAndCatagory(int sellerId, int categoryId) {
 
 		LOG.info("request received for fetching all the Seller products category wise");
 

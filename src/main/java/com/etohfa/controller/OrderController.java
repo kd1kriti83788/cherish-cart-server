@@ -47,13 +47,7 @@ public class OrderController {
 	public ResponseEntity<OrderResponseDto> fetchUserOrders(@RequestParam("userId") int userId) {
 		return orderResource.fetchUserOrders(userId);
 	}
-	
-	@GetMapping("/fetch/seller-wise")
-	@Operation(summary = "Api to fetch seller orders")
-	public ResponseEntity<OrderResponseDto> fetchSellerOrders(@RequestParam("sellerId") int sellerId) {
-		return orderResource.fetchSellerOrders(sellerId);
-	}
-	
+
 	@GetMapping("/{orderId}")
 	@Operation(summary = "Api to fetch orders by order id")
 	public ResponseEntity<OrderResponseDto> fetchOrdersByOrderId(@PathVariable("orderId") String orderId) {

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.etohfa.dto.AddReviewRequest;
@@ -37,11 +36,4 @@ public class ReviewController {
 	public ResponseEntity<ProductReviewResponseDto> fetchProductReview(@PathVariable("productId") int productId) {
 		return this.reviewResource.fetchProductReviews(productId);
 	}
-	
-	@GetMapping("seller")
-	@Operation(summary = "Api to fetch seller product review")
-	public ResponseEntity<ProductReviewResponseDto> fetchSellerReviews(@RequestParam("sellerId") int sellerId) {
-		return this.reviewResource.fetchSellerProductReviews(sellerId);
-	}
-
 }

@@ -30,8 +30,6 @@ import com.etohfa.service.ProductService;
 import com.etohfa.service.UserService;
 import com.etohfa.utility.Constants.DeliveryStatus;
 import com.etohfa.utility.Constants.DeliveryTime;
-import com.etohfa.utility.Constants.UserRole;
-import com.etohfa.utility.Constants.UserStatus;
 import com.etohfa.utility.Helper;
 import com.etohfa.utility.JwtUtils;
 
@@ -234,7 +232,7 @@ public class OrderResource {
 		return new ResponseEntity<OrderResponseDto>(response, HttpStatus.OK);
 	}
 
-	public ResponseEntity<OrderResponseDto> fetchSellerOrders(int sellerId) {
+	public ResponseEntity<OrderResponseDto> getOrdersBySeller(int sellerId) {
 
 		LOG.info("Request received for fetching all seller orders");
 
