@@ -94,13 +94,6 @@ public class ProductController {
 		return this.productResource.searchSellerProductsByName(productName, sellerId);
 	}
 
-	@GetMapping("fetch/category-wise")
-	@Operation(summary = "Api to fetch all products by category")
-	public ResponseEntity<ProductResponseDto> fetchAllProductsByCategory(
-			@RequestParam(name = "categoryId") int categoryId) {
-		return this.productResource.fetchAllProductsByCategory(categoryId);
-	}
-
 	@GetMapping(value = "/{productImageName}", produces = "image/*")
 	public void fetchProductImage(@PathVariable("productImageName") String productImageName, HttpServletResponse resp) {
 		this.productResource.fetchProductImage(productImageName, resp);

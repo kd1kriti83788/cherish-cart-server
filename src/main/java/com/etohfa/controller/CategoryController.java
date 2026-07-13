@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.etohfa.dto.CategoryResponseDto;
 import com.etohfa.dto.CommonApiResponse;
+import com.etohfa.dto.ProductResponseDto;
 import com.etohfa.entity.Category;
 import com.etohfa.resource.CategoryResource;
+import com.etohfa.resource.ProductResource;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -26,6 +28,9 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryResource categoryResource;
+
+	@Autowired
+	private ProductResource productResource;
 	
 	@PostMapping("")
 	@Operation(summary = "Api to add category")
@@ -49,6 +54,13 @@ public class CategoryController {
 	@Operation(summary = "Api to delete category all its products")
 	public ResponseEntity<CommonApiResponse> deleteCategory(@PathVariable("categoryId") int categoryId) {
 		return categoryResource.deleteCategory(categoryId);
+	}
+
+	@GetMapping("/{categoryId}/products")
+	@Operation(summary = "Api to fetch all products by category")
+	public ResponseEntity<ProductResponseDto> fetchAllProductsByCategory(
+			@PathVariable(name = "categoryId") int categoryId) {
+		return this.productResource.fetchAllProductsByCategory(categoryId);
 	}
 
 }

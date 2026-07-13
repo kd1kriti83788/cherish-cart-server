@@ -435,7 +435,7 @@ public class ProductResource {
 		}
 
 		response.setProducts(products);
-		response.setResponseMessage("Product fetched success");
+		response.setResponseMessage("All products fetched by Category success");
 		response.setSuccess(true);
 
 		return new ResponseEntity<ProductResponseDto>(response, HttpStatus.OK);

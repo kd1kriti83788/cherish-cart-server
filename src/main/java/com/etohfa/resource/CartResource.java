@@ -205,7 +205,7 @@ public class CartResource {
 			throw new CartSaveFailedException("Failed to delete the Cart");
 		}
 
-		response.setResponseMessage("User Cart Updated Successful");
+		response.setResponseMessage("Product deleted from Cart Successful");
 		response.setSuccess(true);
 
 		return new ResponseEntity<CartResponseDto>(response, HttpStatus.OK);
