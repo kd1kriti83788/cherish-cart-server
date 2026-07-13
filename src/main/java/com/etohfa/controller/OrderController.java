@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.etohfa.dto.CommonApiResponse;
 import com.etohfa.dto.OrderResponseDto;
-import com.etohfa.dto.UpdateDeliveryStatusRequest;
+import com.etohfa.dto.UpdateOrderStatusRequest;
 import com.etohfa.resource.OrderResource;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,14 +49,14 @@ public class OrderController {
 	
 	@PutMapping("/assign")
 	@Operation(summary = "Api to assign the Delivery Person for the Order")
-	public ResponseEntity<OrderResponseDto> assignDeliveryPerson(@RequestBody UpdateDeliveryStatusRequest request) {
+	public ResponseEntity<OrderResponseDto> assignDeliveryPerson(@RequestBody UpdateOrderStatusRequest request) {
 		return orderResource.assignDeliveryPersonForOrder(request);
 	}
 	
-	@PutMapping("/delivery-status")
+	@PutMapping("/status")
 	@Operation(summary = "Api to update the delivery status of Order")
-	public ResponseEntity<OrderResponseDto> updateDeliveryStatus(@RequestBody UpdateDeliveryStatusRequest request) {
-		return orderResource.updateDeliveryStatus(request);
+	public ResponseEntity<OrderResponseDto> updateOrderStatus(@RequestBody UpdateOrderStatusRequest request) {
+		return orderResource.updateOrderStatus(request);
 	}
 	
 	@GetMapping("/delivery-statuses")

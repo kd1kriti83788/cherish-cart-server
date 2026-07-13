@@ -18,7 +18,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.etohfa.dto.CommonApiResponse;
 import com.etohfa.dto.OrderResponseDto;
-import com.etohfa.dto.UpdateDeliveryStatusRequest;
+import com.etohfa.dto.UpdateOrderStatusRequest;
 import com.etohfa.entity.Cart;
 import com.etohfa.entity.Orders;
 import com.etohfa.entity.Product;
@@ -30,6 +30,7 @@ import com.etohfa.service.ProductService;
 import com.etohfa.service.UserService;
 import com.etohfa.utility.Constants.DeliveryStatus;
 import com.etohfa.utility.Constants.DeliveryTime;
+import com.etohfa.utility.Constants.UserRole;
 import com.etohfa.utility.Helper;
 import com.etohfa.utility.JwtUtils;
 
@@ -296,7 +297,7 @@ public class OrderResource {
 		return new ResponseEntity<OrderResponseDto>(response, HttpStatus.OK);
 	}
 
-	public ResponseEntity<OrderResponseDto> assignDeliveryPersonForOrder(UpdateDeliveryStatusRequest request) {
+	public ResponseEntity<OrderResponseDto> assignDeliveryPersonForOrder(UpdateOrderStatusRequest request) {
 
 		LOG.info("Request received for assigning the delivery person for order");
 
@@ -322,9 +323,9 @@ public class OrderResource {
 
 		User deliveryPerson = this.userService.getUserById(request.getDeliveryId());
 
-		if (deliveryPerson == null) {
+		if (deliveryPerson == null || !deliveryPerson.getRole().equals(UserRole.ROLE_DELIVERY.value())) {
 			response.setOrders(orders);
-			response.setResponseMessage("Delivery Person not found");
+			response.setResponseMessage("Delivery Person not found or not a valid delivery person");
 			response.setSuccess(false);
 
 			return new ResponseEntity<OrderResponseDto>(response, HttpStatus.BAD_REQUEST);
@@ -332,6 +333,7 @@ public class OrderResource {
 
 		for (Orders order : orders) {
 			order.setDeliveryPerson(deliveryPerson);
+			order.setStatus(DeliveryStatus.PROCESSING.value());
 		}
 
 		List<Orders> updatedOrders = this.orderService.updateOrders(orders);
@@ -347,7 +349,7 @@ public class OrderResource {
 		return new ResponseEntity<OrderResponseDto>(response, HttpStatus.OK);
 	}
 
-	public ResponseEntity<OrderResponseDto> updateDeliveryStatus(UpdateDeliveryStatusRequest request) {
+	public ResponseEntity<OrderResponseDto> updateOrderStatus(UpdateOrderStatusRequest request) {
 
 		LOG.info("Request received for assigning the delivery person for order");
 
@@ -355,9 +357,15 @@ public class OrderResource {
 
 		if (request == null || request.getOrderId() == null || request.getStatus() == null
 				|| request.getDeliveryTime() == null || request.getDeliveryId() == 0) {
+
 			response.setResponseMessage("missing input");
 			response.setSuccess(false);
+			return new ResponseEntity<OrderResponseDto>(response, HttpStatus.BAD_REQUEST);
+		}
 
+		if(!request.getStatus().equals(DeliveryStatus.ON_THE_WAY.value()) && !request.getStatus().equals(DeliveryStatus.DELIVERED.value())){
+			response.setResponseMessage("Delivery Person can only set the status to ON_THE_WAY or DELIVERED");
+			response.setSuccess(false);
 			return new ResponseEntity<OrderResponseDto>(response, HttpStatus.BAD_REQUEST);
 		}
 

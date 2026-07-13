@@ -1,6 +1,6 @@
 package com.etohfa.dto;
 
-public class UpdateDeliveryStatusRequest {
+public class UpdateOrderStatusRequest {
 
 	private String orderId;
 
