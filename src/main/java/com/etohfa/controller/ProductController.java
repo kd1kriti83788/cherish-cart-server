@@ -67,12 +67,6 @@ public class ProductController {
 		return this.productResource.fetchAllProducts();
 	}
 
-	@GetMapping("fetch/seller-wise")
-	@Operation(summary = "Api to fetch all seller active product")
-	public ResponseEntity<ProductResponseDto> fetchAllSellerProduct(@RequestParam(name = "sellerId") int sellerId) {
-		return this.productResource.fetchAllSellerProducts(sellerId);
-	}
-
 	@GetMapping("fetch/seller-wise/category-wise")
 	@Operation(summary = "Api to fetch all seller active product")
 	public ResponseEntity<ProductResponseDto> fetchAllSellerProductAndCategory(

@@ -58,9 +58,9 @@ public class CategoryController {
 
 	@GetMapping("/{categoryId}/products")
 	@Operation(summary = "Api to fetch all products by category")
-	public ResponseEntity<ProductResponseDto> fetchAllProductsByCategory(
+	public ResponseEntity<ProductResponseDto> getProductsByCategory(
 			@PathVariable(name = "categoryId") int categoryId) {
-		return this.productResource.fetchAllProductsByCategory(categoryId);
+		return this.productResource.getProductsByCategory(categoryId);
 	}
 
 }

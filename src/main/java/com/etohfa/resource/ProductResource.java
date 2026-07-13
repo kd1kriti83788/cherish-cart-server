@@ -294,7 +294,7 @@ public class ProductResource {
 		return new ResponseEntity<ProductResponseDto>(response, HttpStatus.OK);
 	}
 
-	public ResponseEntity<ProductResponseDto> fetchAllSellerProducts(int sellerId) {
+	public ResponseEntity<ProductResponseDto> getProductsBySellerId(int sellerId) {
 
 		LOG.info("request received for fetching all the Seller products");
 
@@ -402,7 +402,7 @@ public class ProductResource {
 		return new ResponseEntity<ProductResponseDto>(response, HttpStatus.OK);
 	}
 
-	public ResponseEntity<ProductResponseDto> fetchAllProductsByCategory(int categoryId) {
+	public ResponseEntity<ProductResponseDto> getProductsByCategory(int categoryId) {
 
 		LOG.info("request received for fetching all the products by category");
 
