@@ -23,7 +23,7 @@ public class DeliveryPersonController {
     
 	@GetMapping("/{deliveryPersonId}/orders")
 	@Operation(summary = "Api to fetch delivery person orders")
-	public ResponseEntity<OrderResponseDto> fetchDeliveryOrders(@PathVariable("deliveryPersonId") int deliveryPersonId) {
-		return orderResource.fetchDeliveryOrders(deliveryPersonId);
+	public ResponseEntity<OrderResponseDto> getOrdersByDeliveryPersonId(@PathVariable("deliveryPersonId") int deliveryPersonId) {
+		return orderResource.getOrdersByDeliveryPersonId(deliveryPersonId);
 	}
 }

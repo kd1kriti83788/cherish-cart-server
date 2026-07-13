@@ -65,7 +65,7 @@ public class SecurityConfig {
 						.hasAuthority(UserRole.ROLE_SELLER.value())
 						
 						// this APIs are only accessible by Delivery Person
-						.requestMatchers("/api/order/delivery-status", "/api/order/fetch/delivery-wise")
+						.requestMatchers("/api/order/delivery-status", "api/delivery-persons")
 						.hasAuthority(UserRole.ROLE_DELIVERY.value())
 						
 						// this APIs are only accessible by Customer

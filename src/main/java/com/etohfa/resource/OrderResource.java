@@ -407,7 +407,7 @@ public class OrderResource {
 		return new ResponseEntity<OrderResponseDto>(response, HttpStatus.OK);
 	}
 
-	public ResponseEntity<OrderResponseDto> fetchDeliveryOrders(int deliveryPersonId) {
+	public ResponseEntity<OrderResponseDto> getOrdersByDeliveryPersonId(int deliveryPersonId) {
 
 		LOG.info("Request received for fetching all delivery orders");
 

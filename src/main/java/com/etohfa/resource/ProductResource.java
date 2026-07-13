@@ -481,7 +481,7 @@ public class ProductResource {
 		return new ResponseEntity<ProductResponseDto>(response, HttpStatus.OK);
 	}
 
-	public void fetchProductImage(String productImageName, HttpServletResponse resp) {
+	public void getProductImage(String productImageName, HttpServletResponse resp) {
 		Resource resource = storageService.load(productImageName);
 		if (resource != null) {
 			try (InputStream in = resource.getInputStream()) {

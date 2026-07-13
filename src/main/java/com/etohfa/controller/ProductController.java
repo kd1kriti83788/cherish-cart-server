@@ -75,8 +75,8 @@ public class ProductController {
 		return this.productResource.searchProductByName(productName);
 	}
 
-	@GetMapping(value = "/{productImageName}", produces = "image/*")
-	public void fetchProductImage(@PathVariable("productImageName") String productImageName, HttpServletResponse resp) {
-		this.productResource.fetchProductImage(productImageName, resp);
+	@GetMapping(value = "/images/{productImageName}", produces = "image/*")
+	public void getProductImage(@PathVariable("productImageName") String productImageName, HttpServletResponse resp) {
+		this.productResource.getProductImage(productImageName, resp);
 	}
-}
+}	
