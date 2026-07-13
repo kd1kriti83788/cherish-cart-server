@@ -20,7 +20,10 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("api/sellers")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+    "http://localhost:3000",
+    "https://kritikeshri.github.io"
+})
 public class SellerController {
 
 	@Autowired
