@@ -55,7 +55,7 @@ public class SecurityConfig {
 						// this APIs are only accessible by SELLER
 						.requestMatchers("/api/user/fetch/seller/delivery-person", "/api/user/delete/seller/delivery-person", "/api/products/update/image",
 								"/api/products/update/detail", "/api/products/delete",
-								"/api/order/assign/delivery-person", "/api/order/fetch/seller-wise",
+								"/api/order/assign", "/api/order/fetch/seller-wise",
 								"/api/products/review/seller")
 						.hasAuthority(UserRole.ROLE_SELLER.value())
 
@@ -63,11 +63,11 @@ public class SecurityConfig {
 						.hasAuthority(UserRole.ROLE_SELLER.value())
 						
 						// this APIs are only accessible by Delivery Person
-						.requestMatchers("/api/order/update/delivery-status", "/api/order/fetch/delivery-wise")
+						.requestMatchers("/api/order/delivery-status", "/api/order/fetch/delivery-wise")
 						.hasAuthority(UserRole.ROLE_DELIVERY.value())
 						
 						// this APIs are only accessible by Customer
-						.requestMatchers("/api/order/add", "/api/order/fetch/user-wise", "/api/cart/update",
+						.requestMatchers( "/api/order/fetch/user-wise", "/api/cart/update",
 								"/api/cart/add", "/api/cart/fetch", "/api/cart/delete", "/api/product/review/add")
 						.hasAuthority(UserRole.ROLE_CUSTOMER.value())
 

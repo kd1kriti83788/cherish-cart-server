@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +36,7 @@ public class OrderController {
 		return orderResource.orderProductsFromCart(authorization);
 	}
 	
-	@GetMapping("/fetch/all")
+	@GetMapping("")
 	@Operation(summary = "Api to fetch all orders")
 	public ResponseEntity<OrderResponseDto> fetchAllOrders() {
 		return orderResource.fetchAllOrders();
@@ -53,19 +54,19 @@ public class OrderController {
 		return orderResource.fetchSellerOrders(sellerId);
 	}
 	
-	@GetMapping("/fetch")
+	@GetMapping("/{orderId}")
 	@Operation(summary = "Api to fetch orders by order id")
-	public ResponseEntity<OrderResponseDto> fetchOrdersByOrderId(@RequestParam("orderId") String orderId) {
+	public ResponseEntity<OrderResponseDto> fetchOrdersByOrderId(@PathVariable("orderId") String orderId) {
 		return orderResource.fetchOrdersByOrderId(orderId);
 	}
 	
-	@PutMapping("/assign/delivery-person")
+	@PutMapping("/assign")
 	@Operation(summary = "Api to assign the Delivery Person for the Order")
 	public ResponseEntity<OrderResponseDto> assignDeliveryPerson(@RequestBody UpdateDeliveryStatusRequest request) {
 		return orderResource.assignDeliveryPersonForOrder(request);
 	}
 	
-	@PutMapping("/update/delivery-status")
+	@PutMapping("/delivery-status")
 	@Operation(summary = "Api to update the delivery status of Order")
 	public ResponseEntity<OrderResponseDto> updateDeliveryStatus(@RequestBody UpdateDeliveryStatusRequest request) {
 		return orderResource.updateDeliveryStatus(request);
@@ -77,13 +78,13 @@ public class OrderController {
 		return orderResource.fetchDeliveryOrders(deliveryPersonId);
 	}
 	
-	@GetMapping("/fetch/delivery-status/all")
+	@GetMapping("/delivery-statuses")
 	@Operation(summary = "Api to fetch all delivery status")
 	public ResponseEntity<List<String>> fetchAllDeliveryStatus() {
 		return orderResource.fetchAllDeliveryStatus();
 	}
 	
-	@GetMapping("/fetch/delivery-time/all")
+	@GetMapping("/delivery-times")
 	@Operation(summary = "Api to fetch all delivery timings")
 	public ResponseEntity<List<String>> fetchAllDeliveryTime() {
 		return orderResource.fetchAllDeliveryTime();
