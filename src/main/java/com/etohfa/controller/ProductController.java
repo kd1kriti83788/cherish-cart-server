@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
 
 import com.etohfa.dto.CommonApiResponse;
 import com.etohfa.dto.ProductAddRequest;
@@ -33,7 +34,7 @@ public class ProductController {
 	@Autowired
 	private ProductResource productResource;
 
-	@PostMapping("")
+	@PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@Operation(summary = "Api to add product")
 	public ResponseEntity<CommonApiResponse> addProduct(ProductAddRequest productDto) {
 		return this.productResource.addProduct(productDto);
